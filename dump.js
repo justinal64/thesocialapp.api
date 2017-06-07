@@ -13,5 +13,5 @@ db.posts.save(
     "username" : "katie",
     "password" : "password",
     "posts" : "This is my first post and I made it way to long to see if I could break this app!",
-    "company": "Homemake"
+    "company": "Homemaker"
 });
