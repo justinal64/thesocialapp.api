@@ -2,6 +2,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization;
+using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
 
 namespace thechurchapp.api.Repository
 {
@@ -14,7 +17,7 @@ namespace thechurchapp.api.Repository
         public PostsRepository()
         {
             _client = new MongoClient();
-            _database = _client.GetDatabase("demoDb");
+            _database = _client.GetDatabase("demoDB");
             _collection = _database.GetCollection<PostModel>("posts");
         }
 
@@ -26,15 +29,24 @@ namespace thechurchapp.api.Repository
 
         public List<PostModel> SelectAll()
         {
-            var query = this._collection.Find(new BsonDocument()).ToListAsync();
-            return query.Result;
+            //var query =  this._collection.Find(_ => true)?.ToList();
+            try
+            {
+                var query = this._collection.Find(_ => true)?.ToList();
+                return query;
+            }
+            catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return new List<PostModel>();
         }
 
         public List<PostModel> Filter(string jsonQuery)
         {
-			//var queryDoc = new QueryDocument(BsonSerializer.Deserialize<BsonDocument>(jsonQuery));
-			BsonDocument queryDoc = MongoDB.Bson.Serialization
-				   .BsonSerializer.Deserialize<BsonDocument>(jsonQuery);
+            //var queryDoc = new QueryDocument(BsonSerializer.Deserialize<BsonDocument>(jsonQuery));
+            BsonDocument queryDoc = MongoDB.Bson.Serialization
+                   .BsonSerializer.Deserialize<BsonDocument>(jsonQuery);
 
             return _collection.Find<PostModel>(queryDoc).ToList();
         }

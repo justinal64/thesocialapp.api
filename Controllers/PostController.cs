@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using thechurchapp.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
-namespace Blog.DotNetCoreMongoDb.Controllers
+namespace thesocialapp.api.Controllers
 {
     [Route("api/[controller]")]
     public class PostsController : Controller
@@ -18,8 +19,7 @@ namespace Blog.DotNetCoreMongoDb.Controllers
         [HttpGet]
         public List<PostModel> Get(string jsonQuery = "")
         {
-            if (jsonQuery == "") return _repository.SelectAll();
-            Console.WriteLine("Test");
+            if (jsonQuery == "") return  _repository.SelectAll();
 
             return _repository.Filter(jsonQuery);
 
