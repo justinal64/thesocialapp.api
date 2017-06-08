@@ -25,9 +25,17 @@ namespace thesocialapp.api.Controllers
 
         }
 
-        public PostModel Post(PostModel postModel, string id = "")
+        // Post api/posts
+        [HttpPost]
+        public PostModel Post([FromBody]PostModel postModel, string id = "")
         {
-            if (id == "") return _repository.InsertPost(postModel);
+            var test = new PostModel{
+                Company = "Test",
+                Posts = "This is a test post",
+                Username = "Username dahhhh",
+                Password = "Well password"
+            };
+            if (id == "") return _repository.InsertPost(test);
             return _repository.UpdatePost(id, postModel);
         }
     }

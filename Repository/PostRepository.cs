@@ -53,7 +53,7 @@ namespace thechurchapp.api.Repository
 
         public PostModel Get(string id)
         {
-            return this._collection.Find(new BsonDocument { { "_id", new ObjectId(id) } }).FirstAsync().Result;
+            return this._collection.Find(new BsonDocument { { "id", new ObjectId(id) } }).FirstAsync().Result;
         }
         public PostModel UpdatePost(string id, PostModel postmodel)
         {
