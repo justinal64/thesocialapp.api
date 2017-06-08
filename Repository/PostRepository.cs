@@ -24,7 +24,7 @@ namespace thechurchapp.api.Repository
         public PostModel InsertPost(PostModel contact)
         {
             this._collection.InsertOneAsync(contact);
-            return this.Get(contact.id.ToString());
+            return this.Get(contact._id.ToString());
         }
 
         public List<PostModel> SelectAll()
@@ -57,9 +57,9 @@ namespace thechurchapp.api.Repository
         }
         public PostModel UpdatePost(string id, PostModel postmodel)
         {
-            postmodel.id = new ObjectId(id);
+            postmodel._id = new ObjectId(id);
 
-            var filter = Builders<PostModel>.Filter.Eq(s => s.id, postmodel.id);
+            var filter = Builders<PostModel>.Filter.Eq(s => s._id, postmodel._id);
             this._collection.ReplaceOneAsync(filter, postmodel);
             return this.Get(id);
         }
