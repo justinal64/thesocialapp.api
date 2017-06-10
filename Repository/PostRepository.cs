@@ -32,7 +32,7 @@ namespace thechurchapp.api.Repository
             //var query =  this._collection.Find(_ => true)?.ToList();
             try
             {
-                var query = this._collection.Find(_ => true)?.ToList();
+                var query = this._collection.Find(_ => true).ToList();
                 return query;
             }
             catch (Exception ex) {

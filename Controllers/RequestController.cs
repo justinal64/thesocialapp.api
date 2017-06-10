@@ -19,10 +19,13 @@ namespace thesocialapp.api.Controllers
         [HttpGet]
         public List<PostModel> Get(string jsonQuery = "")
         {
-            if (jsonQuery == "") return  _repository.SelectAll();
-
+            // if (jsonQuery == "") return  _repository.SelectAll();
+            if (jsonQuery == "")     
+            {
+                List<PostModel> data = _repository.SelectAll();
+                return data;   
+            }
             return _repository.Filter(jsonQuery);
-
         }
         
         // POST api/request
