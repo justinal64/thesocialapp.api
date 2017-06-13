@@ -30,10 +30,30 @@ namespace thesocialapp.api.Controllers
         
         // POST api/request
         [HttpPost]
-        public PostModel Post([FromBody]PostModel postModel, string id = "")
+        public ActionResult Post([FromBody]PostModel postModel, string id = "")
         {
-            if (id == "") return _repository.InsertPost(postModel);
-            return _repository.UpdatePost(id, postModel);
+            // if(postModel.dbid == null) return StatusCode(404, "No dbid entered");
+            // if (id == "")
+            // {
+            //     _repository.InsertPost(postModel);
+            //     return StatusCode(400);
+            // }
+            // return _repository.UpdatePost(id, postModel);
+            // return StatusCode(400);
+            // if (id == "") return _repository.InsertPost(postModel);
+            // return _repository.UpdatePost(id, postModel);
+            if(postModel.dbid == null) return StatusCode(404, "Please enter a dbid");
+            if (id == "")
+            {
+                _repository.InsertPost(postModel);
+                return StatusCode(400);
+            } 
+            else 
+            {
+                _repository.UpdatePost(id, postModel);
+                return StatusCode(400, "Record Updated");
+                
+            }
         }
         
         // PUT api/request
