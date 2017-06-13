@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using thechurchapp.api.Repository;
+using thesocialapp.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -46,12 +46,12 @@ namespace thesocialapp.api.Controllers
             if (id == "")
             {
                 _repository.InsertPost(postModel);
-                return StatusCode(400);
+                return StatusCode(200);
             } 
             else 
             {
                 _repository.UpdatePost(id, postModel);
-                return StatusCode(400, "Record Updated");
+                return StatusCode(200, "Record Updated");
                 
             }
         }
