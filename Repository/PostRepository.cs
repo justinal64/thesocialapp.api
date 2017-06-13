@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System;
 using System.Diagnostics;
 
-namespace thechurchapp.api.Repository
+namespace thesocialapp.api.Repository
 {
     public class PostsRepository
     {
